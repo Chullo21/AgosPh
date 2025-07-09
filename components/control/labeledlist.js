@@ -10,9 +10,9 @@ export default function LabeledList({
   icon,
   image,
   showLeft = true,
-  customComponent: CustomComponent,
-  onQuantityChange,
+  renderItem = null,
 }) {
+
   const renderLeft = (item) => {
     if (!showLeft) return null;
     if (item.photo_url) {
@@ -24,31 +24,32 @@ export default function LabeledList({
     }
   };
 
-  const renderItem = ({ item }) => {
-    if (CustomComponent) {
-      return (
-        <CustomComponent
-          id={item.id}
-          title={item.title}
-          description={item.description}
-          imageUrl={item.photo_url}
-          price={item.price}
-          onQuantityChange={onQuantityChange}
-        />
-      );
-    }
-
-    return (
-      <>
-        <List.Item
-          title={item.title}
-          description={item.description}
-          left={() => renderLeft(item)}
-        />
-        <Divider />
-      </>
-    );
-  };
+  // const renderItem = ({ item }) => {
+  //   if (CustomComponent) {
+  //     return (
+  //       <CustomComponent
+  //         id={item.id}
+  //         title={item.title}
+  //         description={item.description}
+  //         imageUrl={item.photo_url}
+  //         price={item.price}
+  //         onQuantityChange={onQuantityChange}
+  //       />
+  //     );
+  //   }
+  
+  //   return (
+  //     <View>
+  //       <List.Item
+  //         title={item.title? item.title : item.name}
+  //         description={`₱${parseFloat(item.price).toFixed(2)}`}
+  //         left={() => renderLeft(item)}
+  //       />
+  //       <Divider />
+  //     </View>
+  //   );
+  // };
+  
 
   const renderEmpty = () => (
     <View>
@@ -62,6 +63,7 @@ export default function LabeledList({
       {label ? <Text style={styles.label}>{label}</Text> : null}
       <FlatList
         style={styles.list}
+        contentContainerStyle={styles.listContent}
         data={data}
         renderItem={renderItem}
         keyExtractor={(item, index) => item?.id?.toString() || index.toString()}
@@ -78,6 +80,9 @@ const styles = StyleSheet.create({
   },
   list: {
     width: '100%',
+  },
+  listContent: {
+    paddingBottom: 200,
   },
   label: {
     fontSize: 18,

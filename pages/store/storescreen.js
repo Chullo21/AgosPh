@@ -4,8 +4,8 @@ import { Appbar } from 'react-native-paper';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import CustomImage from '../../components/control/customimage/customimage';
 import LabeledList from '../../components/control/labeledlist';
-import CustomListItem from '../../components/control/customlistitem';
-import Button from '../../components/control/button';
+import CustomStoreListItem from '../../components/control/customstorelistitem';
+import PlaceOrderButton from '../../components/control/placeorderbutton';
 
 export default function StoreScreen() {
   const navigation = useNavigation();
@@ -14,6 +14,44 @@ export default function StoreScreen() {
 
   const [menuItems, setMenuItems] = useState([]);
   const [cart, setCart] = useState({});
+  const [orders, setOrders] = useState([]);
+
+  const handleOrderPress = () => {
+    console.log('Navigating with orders:', orders);
+    navigation.navigate('ConfirmOrder', { orders, store, total });
+  };
+
+  const handleQuantityChange = (id, quantity, price, pName) => {
+    setCart(prev => {
+      const updated = { ...prev };
+  
+      if (quantity > 0) {
+        updated[id] = { quantity, price: parseFloat(price), pName };
+      } else {
+        delete updated[id];
+      }
+  
+      const newOrders = Object.entries(updated).map(([key, item]) => ({
+        id: key,
+        quantity: item.quantity,
+        price: item.price,
+        name: item.pName
+      }));
+  
+      setOrders(newOrders);
+  
+      return updated;
+    });
+  };
+  
+  const total = Object.values(cart).reduce(
+    (sum, item) => sum + item.quantity * item.price,
+    0
+  );
+
+  const handleBackPress = () => {
+    navigation.navigate('Home');
+  };
 
   useEffect(() => {
     if (store?.id) {
@@ -23,27 +61,6 @@ export default function StoreScreen() {
         .catch(err => console.error('Fetch error:', err));
     }
   }, [store?.id]);
-
-  const handleQuantityChange = (id, quantity, price) => {
-    setCart(prev => {
-      const updated = { ...prev };
-      if (quantity > 0) {
-        updated[id] = { quantity, price: parseFloat(price) };
-      } else {
-        delete updated[id];
-      }
-      return updated;
-    });
-  };
-
-  const total = Object.values(cart).reduce(
-    (sum, item) => sum + item.quantity * item.price,
-    0
-  );
-
-  const handleBackPress = () => {
-    navigation.navigate('Home');
-  };
 
   if (!store) {
     return (
@@ -68,29 +85,33 @@ export default function StoreScreen() {
         />
       </View>
 
-      <View style={styles.orderContainer}>
-        <View style={styles.totalRow}>
-          <Text style={styles.totalLabel}>Total</Text>
-          <Text style={styles.totalPrice}>₱{total.toFixed(2)}</Text>
-        </View>
-        <View style={styles.buttonWrapper}>
-          <Button
-            mode="contained"
-            style={styles.orderButton}
-            label="Confirm Order"
-          />
-        </View>
-      </View>
+      {total ? 
+        <PlaceOrderButton
+          label="Place Order"
+          total={total}
+          onPress={handleOrderPress}
+        />
+        :
+        null
+      }
 
-      <LabeledList
-        label="Their products"
-        data={menuItems}
-        noTitle="Unavailable"
-        noDescription="Shop has not updated its menu yet."
-        showLeft={false}
-        customComponent={CustomListItem}
-        onQuantityChange={handleQuantityChange}
-      />
+<LabeledList
+  label="Available products"
+  data={menuItems}
+  noTitle="Unavailable"
+  noDescription="Shop has not updated its menu yet."
+  showLeft={true}
+  renderItem={({ item }) => (
+    <CustomStoreListItem
+      id={item.id}
+      title={item.title}
+      description={item.description}
+      imageUrl={item.photo_url}
+      price={item.price}
+      onQuantityChange={handleQuantityChange}
+    />
+  )}
+/>
     </View>
   );
 }
@@ -110,31 +131,5 @@ const styles = StyleSheet.create({
   logo: {
     width: '100%',
     height: '100%',
-  },
-  orderContainer: {
-    padding: 16,
-    borderTopWidth: 1,
-    borderColor: '#ccc',
-    backgroundColor: '#fff',
-  },
-  totalRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 12,
-  },
-  totalLabel: {
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  totalPrice: {
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  buttonWrapper: {
-    alignItems: 'center',
-  },
-  orderButton: {
-    width: '80%',
-    borderRadius: 6,
   },
 });

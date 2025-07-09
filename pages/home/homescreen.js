@@ -21,7 +21,6 @@ export default function HomeScreen() {
   const closeMenu = () => setVisible(false);
 
   const handleStorePress = (store) => {
-    console.log(store);
     navigation.navigate('Store', { store });
   };
 
@@ -110,7 +109,6 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // justifyContent: "space-between", ❌ remove this
     paddingTop: 12,
   },   
   background: {

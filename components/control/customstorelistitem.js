@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import { View, Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
 
-export default function CustomListItem({ id, title, description, imageUrl, price, onQuantityChange }) {
+export default function CustomeStoreListItem({ id, title, description, imageUrl, price, onQuantityChange }) {
   const [quantity, setQuantity] = useState(0);
 
   const increase = () => {
     const newQty = quantity + 1;
     setQuantity(newQty);
-    onQuantityChange?.(id, newQty, price);
+    onQuantityChange?.(id, newQty, price, title);
   };
 
   const decrease = () => {
     const newQty = quantity > 0 ? quantity - 1 : 0;
     setQuantity(newQty);
-    onQuantityChange?.(id, newQty, price);
+    onQuantityChange?.(id, newQty, price, title);
   };
 
   return (
