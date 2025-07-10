@@ -1,22 +1,39 @@
-// components/control/LargeAppBar.js
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Appbar, Menu, Text } from 'react-native-paper';
+import { AuthContext } from '../../context/authcontext';
+import { useRoute, useNavigation } from '@react-navigation/native';
+
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default function LargeAppBar({ onLogout }) {
+
+  const navigation = useNavigation();
+  const route = useRoute();
+
+  const { userToken } = useContext(AuthContext);
   const [menuVisible, setMenuVisible] = useState(false);
+
+  const handleManageStorePress = () => {
+    navigation.navigate('Seller', { });
+  };
 
   return (
     <View style={styles.container}>
       <Appbar.Header style={styles.header}>
-        {/* Absolutely positioned centered title */}
         <View style={styles.centerContainer}>
           <Text style={styles.title}>Agos</Text>
         </View>
-
-        {/* Spacer to push icons to the right */}
         <View style={{ flexDirection: 'row', marginLeft: 'auto' }}>
+          {userToken.role === "store" ? 
+            <Appbar.Action
+              icon="store-edit"
+              color="white"
+              onPress={handleManageStorePress}
+            />
+            :
+            null
+          }
           <Appbar.Action
             icon="cart"
             color="white"
@@ -63,7 +80,7 @@ export default function LargeAppBar({ onLogout }) {
       </Appbar.Header>
 
       <View style={styles.largeSection}>
-        <Text style={styles.welcome}>Welcome, John!</Text>
+        <Text style={styles.welcome}>{"Welcome, " + userToken.name.split(" ")[0] + "!"}</Text>
         <Text style={styles.subtitle}>Let’s sell something today 🚚</Text>
       </View>
     </View>

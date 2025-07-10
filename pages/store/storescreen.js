@@ -59,7 +59,7 @@ export default function StoreScreen() {
         .then(res => res.json())
         .then(data => setMenuItems(data))
         .catch(err => console.error('Fetch error:', err));
-    }
+      }
   }, [store?.id]);
 
   if (!store) {
@@ -95,23 +95,23 @@ export default function StoreScreen() {
         null
       }
 
-<LabeledList
-  label="Available products"
-  data={menuItems}
-  noTitle="Unavailable"
-  noDescription="Shop has not updated its menu yet."
-  showLeft={true}
-  renderItem={({ item }) => (
-    <CustomStoreListItem
-      id={item.id}
-      title={item.title}
-      description={item.description}
-      imageUrl={item.photo_url}
-      price={item.price}
-      onQuantityChange={handleQuantityChange}
-    />
-  )}
-/>
+      <LabeledList
+        label="Available products"
+        data={menuItems}
+        noTitle="Unavailable"
+        noDescription="Shop has not updated its menu yet."
+        showLeft={true}
+        renderItem={({ item }) => (
+          <CustomStoreListItem
+            id={item.id}
+            title={item.title}
+            description={item.description}
+            imageUrl={item.photo_url}
+            price={item.price}
+            onQuantityChange={handleQuantityChange}
+          />
+        )}
+      />
     </View>
   );
 }

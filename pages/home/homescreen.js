@@ -12,9 +12,11 @@ import LabeledFlatList from "../../components/control/labeledflatlist";
 
 export default function HomeScreen() {
   const { logout } = useContext(AuthContext);
-  const [visible, setVisible] = useState(false);
   const { location: userLocation, refreshLocation } = useContext(LocationContext);
+
   const navigation = useNavigation();
+
+  const [visible, setVisible] = useState(false);
   const [stores, setStores] = useState([]);
 
   const openMenu = () => setVisible(true);
@@ -49,7 +51,7 @@ export default function HomeScreen() {
         resizeMode="cover"
         blurRadius={1}
       >       
-        <LargeAppBar onMenuPress={openMenu} />    
+        <LargeAppBar onMenuPress={openMenu} onLogout={logout}/>    
 
         <Searchbar
           placeholder="Let's order!"

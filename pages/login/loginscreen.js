@@ -10,6 +10,14 @@ import {
 import { useContext } from "react";
 import { AuthContext } from "../../context/authcontext";
 
+const userData = {
+  id: '1',
+  name: "John Gabriel Toledo",
+  email: "toledojgabby@gmail.com",
+  role: "store"
+};
+
+
 export default function LoginScreen() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -18,8 +26,7 @@ export default function LoginScreen() {
 
   const handleLogin = () => {
     console.log("Logging in with:", email, password);
-    const dummyToken = "abc123";
-    login(dummyToken);
+    login(userData);
   };
 
   return (

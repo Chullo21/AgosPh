@@ -37,7 +37,6 @@ export default function ConfirmOrderScreen() {
             data={orders}
             noTitle="Unavailable"
             noDescription="Shop has not updated its menu yet."
-            showLeft={false}
             renderItem={({ item }) => (
                 <CustomConfirmListItem
                     name={item.name}

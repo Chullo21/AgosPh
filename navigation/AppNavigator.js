@@ -6,6 +6,7 @@ import LoginScreen from "../pages/login/loginscreen";
 import HomeScreen from "../pages/home/homescreen";
 import StoreScreen from "../pages/store/storescreen";
 import ConfirmOrderScreen from "../pages/confirmorder/confirmorderscreen";
+import SellerScreen from "../pages/seller/sellerscreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +23,7 @@ export default function AppNavigator() {
               <Stack.Screen name="Home" component={HomeScreen} />
               <Stack.Screen name="Store" component={StoreScreen} />
               <Stack.Screen name="ConfirmOrder" component={ConfirmOrderScreen} />
+              <Stack.Screen name="Seller" component={SellerScreen} />
             </>
         )}
       </Stack.Navigator>
