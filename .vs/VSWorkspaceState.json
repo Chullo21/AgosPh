@@ -1,5 +1,15 @@
 {
-  "ExpandedNodes": [""],
-  "SelectedNode": "\\App.js",
+  "ExpandedNodes": [
+    "",
+    "\\components",
+    "\\components\\control",
+    "\\context",
+    "\\pages",
+    "\\pages\\confirmorder",
+    "\\pages\\seller",
+    "\\pages\\store",
+    "\\services"
+  ],
+  "SelectedNode": "\\pages\\seller\\ordersscreen.js",
   "PreviewInSolutionExplorer": false
 }

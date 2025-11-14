@@ -1,10 +1,10 @@
 import React from 'react';
 import { View, ActivityIndicator, StyleSheet, Text } from 'react-native';
 
-export default function Loading({ message = "Loading..." }) {
+export default function Loading({ message = "Loading" }) {
   return (
     <View style={styles.container}>
-      <ActivityIndicator size="large" color="#007AFF" />
+      {/* <ActivityIndicator size="large" color="#007AFF" /> */}
       <Text style={styles.text}>{message}</Text>
     </View>
   );

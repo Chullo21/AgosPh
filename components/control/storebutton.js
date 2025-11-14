@@ -12,7 +12,7 @@ export default function StoreButton({ store, onPress }) {
           style={styles.image}
           resizeMode="cover"
         />
-      ) : <Loading/>}
+      ) : <Loading message="Photo here"/>}
       <Text style={styles.text} numberOfLines={1}>{store.name}</Text>
     </TouchableOpacity>
   );
@@ -34,5 +34,8 @@ const styles = StyleSheet.create({
     marginTop: 6,
     fontSize: 14,
     textAlign: 'center',
+    width: "100%",
+    color: '#001f3f',
+    fontWeight: 'bold',
   },
 });

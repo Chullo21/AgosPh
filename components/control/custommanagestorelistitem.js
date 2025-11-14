@@ -20,7 +20,7 @@ export default function CustomManageStoreListItem({ title, price, description, o
             </View>
             <Text style={styles.details}>{description}</Text>
           </View>
-          <Text style={styles.total}>₱{price}</Text>
+          <Text style={styles.total}>₱{price.toString()}</Text>
         </View>
       </TouchableOpacity>
       <Divider />
@@ -43,17 +43,20 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 16,
     fontWeight: '600',
+    width: "100%",
   },
   details: {
     fontSize: 14,
     color: '#666',
     marginTop: 2,
+    width: "100%",
   },
   total: {
     fontSize: 16,
     fontWeight: 'bold',
     color: '#000',
     marginLeft: 10,
+    width: "100%",
   },
   titleRow: {
     flexDirection: 'row',

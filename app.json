@@ -20,11 +20,20 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.anonymous.SoftDeli"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "plugins": ["expo-secure-store"]
+    "plugins": [
+      "expo-secure-store"
+    ],
+    "extra": {
+      "API_BASE_URL": "https://agosbackend-production.up.railway.app",
+      "eas": {
+        "projectId": "efc88c20-e22b-4fbe-9dfd-48306b46679f"
+      }
+    }
   }
 }

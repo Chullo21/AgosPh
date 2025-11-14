@@ -8,7 +8,7 @@ export default function PlaceOrderButton({ label, total = '0.00', onPress }) {
       <TouchableOpacity style={styles.button} onPress={onPress}>
         <View>
           <Text style={styles.labelHeader}>{label}</Text>
-          <Text>{'Total: ₱' + total.toFixed(2) }</Text>
+          <Text style={{width: "100%", color: 'black'}}>{'Total: ₱' + total.toFixed(2) }</Text>
         </View>
       </TouchableOpacity>
     </View>
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     zIndex: 1000,
   },
   button: {
-    backgroundColor: '#00a3e5',
+    backgroundColor: 'white',
     paddingHorizontal: 20,
     paddingVertical: 12,
     borderRadius: 30,
@@ -32,8 +32,9 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   },
   labelHeader: {
-    color: '#fff',
+    color: 'black',
     fontSize: 16,
     fontWeight: 'bold',
+    width: "100%",
   },
 });

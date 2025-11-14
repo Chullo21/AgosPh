@@ -19,6 +19,9 @@ export default function LocationProvider({ children }) {
         latitude: loc.coords.latitude,
         longitude: loc.coords.longitude,
       });
+
+      // console.log("lat: ", loc.coords.latitude);
+      // console.log("long: ", loc.coords.longitude);
     } catch (err) {
       console.error(err);
     }

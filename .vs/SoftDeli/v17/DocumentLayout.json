@@ -3,8 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\Gabriel Toledo\\Desktop\\SoftDeli\\SoftDeli\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Gabriel Toledo\\Desktop\\SoftDeli\\SoftDeli\\App.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:App.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Gabriel Toledo\\Desktop\\SoftDeli\\SoftDeli\\pages\\seller\\ordersscreen.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:pages\\seller\\ordersscreen.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Gabriel Toledo\\Desktop\\SoftDeli\\SoftDeli\\components\\control\\largeappbar.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:components\\control\\largeappbar.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Gabriel Toledo\\Desktop\\SoftDeli\\SoftDeli\\components\\control\\button.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:components\\control\\button.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Gabriel Toledo\\Desktop\\SoftDeli\\SoftDeli\\pages\\confirmorder\\confirmorderscreen.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:pages\\confirmorder\\confirmorderscreen.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Gabriel Toledo\\Desktop\\SoftDeli\\SoftDeli\\pages\\store\\storescreen.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:pages\\store\\storescreen.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Gabriel Toledo\\Desktop\\SoftDeli\\SoftDeli\\pages\\seller\\sellerscreen.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:pages\\seller\\sellerscreen.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Gabriel Toledo\\Desktop\\SoftDeli\\SoftDeli\\pages\\home\\homescreen.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:pages\\home\\homescreen.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 11,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,15 +62,93 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "App.js",
-              "DocumentMoniker": "C:\\Users\\Gabriel Toledo\\Desktop\\SoftDeli\\SoftDeli\\App.js",
-              "RelativeDocumentMoniker": "App.js",
-              "ToolTip": "C:\\Users\\Gabriel Toledo\\Desktop\\SoftDeli\\SoftDeli\\App.js",
-              "RelativeToolTip": "App.js",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "DocumentIndex": 3,
+              "Title": "confirmorderscreen.js",
+              "DocumentMoniker": "C:\\Users\\Gabriel Toledo\\Desktop\\SoftDeli\\SoftDeli\\pages\\confirmorder\\confirmorderscreen.js",
+              "RelativeDocumentMoniker": "pages\\confirmorder\\confirmorderscreen.js",
+              "ToolTip": "C:\\Users\\Gabriel Toledo\\Desktop\\SoftDeli\\SoftDeli\\pages\\confirmorder\\confirmorderscreen.js",
+              "RelativeToolTip": "pages\\confirmorder\\confirmorderscreen.js",
+              "ViewState": "AQIAAA4AAAAAAAAAAADwvy8AAAAbAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-06-24T09:36:00.375Z",
+              "WhenOpened": "2025-09-12T06:59:31.168Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "storescreen.js",
+              "DocumentMoniker": "C:\\Users\\Gabriel Toledo\\Desktop\\SoftDeli\\SoftDeli\\pages\\store\\storescreen.js",
+              "RelativeDocumentMoniker": "pages\\store\\storescreen.js",
+              "ToolTip": "C:\\Users\\Gabriel Toledo\\Desktop\\SoftDeli\\SoftDeli\\pages\\store\\storescreen.js",
+              "RelativeToolTip": "pages\\store\\storescreen.js",
+              "ViewState": "AQIAABUAAAAAAAAAAAAAAC4AAAAHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-09-12T06:54:57.558Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "button.js",
+              "DocumentMoniker": "C:\\Users\\Gabriel Toledo\\Desktop\\SoftDeli\\SoftDeli\\components\\control\\button.js",
+              "RelativeDocumentMoniker": "components\\control\\button.js",
+              "ToolTip": "C:\\Users\\Gabriel Toledo\\Desktop\\SoftDeli\\SoftDeli\\components\\control\\button.js",
+              "RelativeToolTip": "components\\control\\button.js",
+              "ViewState": "AQIAABcAAAAAAAAAAAAQwCsAAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-09-12T04:21:24.433Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "largeappbar.js",
+              "DocumentMoniker": "C:\\Users\\Gabriel Toledo\\Desktop\\SoftDeli\\SoftDeli\\components\\control\\largeappbar.js",
+              "RelativeDocumentMoniker": "components\\control\\largeappbar.js",
+              "ToolTip": "C:\\Users\\Gabriel Toledo\\Desktop\\SoftDeli\\SoftDeli\\components\\control\\largeappbar.js",
+              "RelativeToolTip": "components\\control\\largeappbar.js",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAEgAAAA/AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-09-12T04:20:11.376Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "homescreen.js",
+              "DocumentMoniker": "C:\\Users\\Gabriel Toledo\\Desktop\\SoftDeli\\SoftDeli\\pages\\home\\homescreen.js",
+              "RelativeDocumentMoniker": "pages\\home\\homescreen.js",
+              "ToolTip": "C:\\Users\\Gabriel Toledo\\Desktop\\SoftDeli\\SoftDeli\\pages\\home\\homescreen.js",
+              "RelativeToolTip": "pages\\home\\homescreen.js",
+              "ViewState": "AQIAAG4AAAAAAAAAAAAQwC0AAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-09-11T08:25:40.887Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "sellerscreen.js",
+              "DocumentMoniker": "C:\\Users\\Gabriel Toledo\\Desktop\\SoftDeli\\SoftDeli\\pages\\seller\\sellerscreen.js",
+              "RelativeDocumentMoniker": "pages\\seller\\sellerscreen.js",
+              "ToolTip": "C:\\Users\\Gabriel Toledo\\Desktop\\SoftDeli\\SoftDeli\\pages\\seller\\sellerscreen.js",
+              "RelativeToolTip": "pages\\seller\\sellerscreen.js",
+              "ViewState": "AQIAAJEAAAAAAAAAAADwv9IAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-09-11T05:41:25.242Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ordersscreen.js",
+              "DocumentMoniker": "C:\\Users\\Gabriel Toledo\\Desktop\\SoftDeli\\SoftDeli\\pages\\seller\\ordersscreen.js",
+              "RelativeDocumentMoniker": "pages\\seller\\ordersscreen.js",
+              "ToolTip": "C:\\Users\\Gabriel Toledo\\Desktop\\SoftDeli\\SoftDeli\\pages\\seller\\ordersscreen.js",
+              "RelativeToolTip": "pages\\seller\\ordersscreen.js",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAqwFcAAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-09-11T05:20:41.412Z",
               "EditorCaption": ""
             }
           ]
