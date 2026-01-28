@@ -53,6 +53,7 @@ export default function LoginScreen() {
                         value={password}
                         onChangeText={setPassword}
                         secureTextEntry
+                        // keyboardType="visible-password"
                         style={styles.input}
                     />
 
@@ -80,7 +81,7 @@ const styles = StyleSheet.create({
     background: { flex: 1, justifyContent: "center" },
     safeArea: { flex: 1, justifyContent: "center", padding: 20 },
     overlay: {
-        backgroundColor: "rgba(255, 255, 255, 0.85)",
+        backgroundColor: "#fff", // fully opaque
         borderRadius: 10,
         padding: 20,
         width: "100%",
@@ -90,6 +91,7 @@ const styles = StyleSheet.create({
         marginBottom: 30,
         fontSize: 28,
         fontWeight: "bold",
+        color: "black"
     },
     input: {
         borderWidth: 1,
@@ -98,6 +100,7 @@ const styles = StyleSheet.create({
         padding: 10,
         marginBottom: 15,
         backgroundColor: "#fff",
+        color: "black"
     },
     button: {
         backgroundColor: "#00a3e5",

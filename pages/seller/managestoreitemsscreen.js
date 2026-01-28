@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import { TextInput, Button } from "react-native-paper";
 import { AuthContext } from "../../context/authcontext";
+import { useNavigation } from "@react-navigation/native";
 import Constants from "expo-constants";
 import CustomLoading from "../../components/control/customloading";
 import AppBar from "../../components/control/appbar";
@@ -28,13 +29,19 @@ export default function ManageStoreItemsScreen({ route, navigation }) {
 	const [open, setOpen] = useState(false);
 	const [isLoading, setIsLoading] = useState(false);
 
+	const nav = useNavigation();
+
 	const headers = {
-				"method": "GET",
-				"Content-Type": "application/json",
-				"Authorization": `Bearer ${userToken}`,
-			};
+		"method": "GET",
+		"Content-Type": "application/json",
+		"Authorization": `Bearer ${userToken}`,
+	};
 
 	const handleBackPress = () => navigation.goBack();
+
+	const handleStoreHistoryPress = () => {
+		nav.navigate("StoreHistory", {storeId, storeName});
+	};
 
 	const fetchStoreItems = async () => {
 		try {
@@ -210,15 +217,14 @@ export default function ManageStoreItemsScreen({ route, navigation }) {
 	};
 
 	return (
-		<ImageBackground source={BackgroundPhoto} style={{ flex: 1 }}>
+		<ImageBackground source={BackgroundPhoto} style={{ flex: 1 }} resizeMode="stretch">
 			<View style={{ flex: 1 }}>
 				<AppBar
 					title={storeName}
 					onBackPress={handleBackPress}
-					// actionIcon="plus"
-					// onActionPress={handleAddNew}
 					actions={[
 						{ icon: "plus", onPress: handleAddNew },
+						{ icon: "invoice-list-outline", onPress: handleStoreHistoryPress },
 						{ icon: "pencil", onPress: null },
 					]}
 				/>

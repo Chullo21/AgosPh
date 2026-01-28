@@ -73,18 +73,32 @@ export default function ManageStoreListScreen() {
 
     const handleGetLocation = async () => {
         try {
-            const { status } = await Location.requestForegroundPermissionsAsync();
-            if (status !== "granted") {
+            let { status } = await Location.requestForegroundPermissionsAsync();
+            if (status !== 'granted') {
                 alert("Location permission is required.");
                 return;
             }
-            const location = await Location.getCurrentPositionAsync({});
+
+            // Fix 1: Try getting last known position first to "warm up" the provider
+            let lastLocation = await Location.getLastKnownPositionAsync({});
+            if (lastLocation) {
+                setLongitude(lastLocation.coords.longitude.toString());
+                setLatitude(lastLocation.coords.latitude.toString());
+            }
+
+            // Fix 2: Use lower accuracy for the emulator to avoid "Unavailable" errors
+            const location = await Location.getCurrentPositionAsync({
+                accuracy: Location.Accuracy.Balanced, // High/Highest often fails on emulators
+            });
+
             setLongitude(location.coords.longitude.toString());
             setLatitude(location.coords.latitude.toString());
-        } catch {
+        } catch (error) {
+            console.error(error);
             alert("Failed to fetch location.");
         }
     };
+
 
     const uploadPhoto = async (uri) => {
         if (!uri || uri.startsWith("http")) return uri;

@@ -9,7 +9,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 export default function LargeAppBar({ onLogout }) {
 	const navigation = useNavigation();
 	const route = useRoute();
-	const { API_IP, API_PORT } = Constants.expoConfig.extra;
+	const { API_BASE_URL } = Constants.expoConfig.extra;
 
 	const { userToken, user } = useContext(AuthContext);
 	const [menuVisible, setMenuVisible] = useState(false);
@@ -23,7 +23,7 @@ export default function LargeAppBar({ onLogout }) {
 	const getOrdersCount = async () => { 
 		try {
 			const orderRes = await fetch(
-				`http://${API_IP}:${API_PORT}/api/Order/getstoretotalorderscount?userId=${user.id}`,
+				`${API_BASE_URL}/api/Order/getstoretotalorderscount?userId=${user.id}`,
 				{ 
 					method: "GET",
 					headers: {

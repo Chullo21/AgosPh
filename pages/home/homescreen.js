@@ -14,7 +14,6 @@ import LargeAppBar from "../../components/control/largeappbar";
 import BackgroundPhoto from "../../assets/Beige Blue Modern Abstract Line Shape Bookmark.png";
 import Grid from "../../components/control/grid";
 import FloatingOrderButton from "../../components/control/floatingorderbutton";
-import TestToken from "../../components/others/TestToken";
 
 export default function HomeScreen() {
 	const { logout, userToken, user } = useContext(AuthContext);

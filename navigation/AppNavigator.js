@@ -13,6 +13,7 @@ import OrdersScreen from "../pages/seller/ordersscreen";
 import ManageStoreItemsScreen from "../pages/seller/managestoreitemsscreen";
 import ManageStoreListScreen from "../pages/seller/list/managestorelistscreen";
 import OrdersStoreListScreen from "../pages/seller/list/ordersstorelistscreen";
+import StoreHistoryScreen from "../pages/seller/storehistoryscreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -36,7 +37,7 @@ export default function AppNavigator() {
               <Stack.Screen name="MonitorOrder" component={MonitorOrderScreen} />
               <Stack.Screen name="ManageStoreItems" component={ManageStoreItemsScreen} />  
               <Stack.Screen name="SellerOrders" component={OrdersScreen} />   
-              {/* <Stack.Screen name="SelectStore" component={SelectStoreScreen} /> */}
+              <Stack.Screen name="StoreHistory" component={StoreHistoryScreen} />
               <Stack.Screen name="ManageStoreList" component={ManageStoreListScreen} />   
               <Stack.Screen name="OrdersStoreList" component={OrdersStoreListScreen} />
             </>

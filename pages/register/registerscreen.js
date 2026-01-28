@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
     background: { flex: 1, justifyContent: "center" },
     safeArea: { flex: 1, justifyContent: "center", padding: 20 },
     overlay: {
-        backgroundColor: "rgba(255, 255, 255, 0.85)",
+        backgroundColor: "#fff",
         borderRadius: 10,
         padding: 20,
         width: "100%",

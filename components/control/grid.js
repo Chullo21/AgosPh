@@ -19,9 +19,9 @@ export default function Grid({
     label,
     data,
     onPress,
-    onRefresh,          // ✅ add refresh handler
+    onRefresh,
     isloading = false,
-    refreshing = false, // ✅ add refreshing state
+    refreshing = false,
     noTitle = '',
     noDescription = '',
 }) {
@@ -89,7 +89,7 @@ export default function Grid({
                 value={searchQuery}
                 onChangeText={setSearchQuery}
                 style={styles.searchbar}
-                inputStyle={{ fontSize: 14 }}
+                inputStyle={{ fontSize: 14, color: 'black' }}
             />
 
             {isloading ? (
@@ -139,6 +139,7 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         borderRadius: 25,
         elevation: 2,
+        backgroundcolor: 'white',
     },
     columnWrapper: {
         justifyContent: 'space-between',
