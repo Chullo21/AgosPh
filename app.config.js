@@ -28,9 +28,9 @@ export default ({ config }) => {
 
     extra: {
       // For local development:
-      API_BASE_URL: "http://192.168.1.6:8080",
+      // API_BASE_URL: "http://192.168.1.6:8080",
       // For production:
-      // API_BASE_URL: "https://agosbackend-production.up.railway.app",
+      API_BASE_URL: "https://agosbackend-production.up.railway.app",
       eas: {
         projectId: "efc88c20-e22b-4fbe-9dfd-48306b46679f",
       },
