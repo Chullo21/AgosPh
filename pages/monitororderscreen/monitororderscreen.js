@@ -70,7 +70,7 @@ export default function MonitorOrderScreen() {
                 store: stores.find(store => store.id === order.storeId) || null,
                 items: orderItems.filter(i => i.orderId === order.id)
             }));
-
+            console.log(orderItems);
             setMergedData(merged);
         } catch (err) {
             console.error('Fetch error:', err);
@@ -162,7 +162,9 @@ export default function MonitorOrderScreen() {
                     <CustomLoading />
                 ) : (
                     <FlatList
-                        data={mergedData}
+                        data={[...mergedData].sort(
+                            (a, b) => new Date(b.orderDate) - new Date(a.orderDate)
+                        )}
                         keyExtractor={(order) => order.id.toString()}
                         renderItem={renderOrder}
                         ListEmptyComponent={

@@ -94,7 +94,7 @@ export default function OrdersScreen() {
 
             await fetch(`${API_BASE_URL}/api/Order/${selectedItem.id}/status`,
                 {
-                    method: "PUT",
+                    method: "POST",
                     headers: {
                         "Authorization": `Bearer ${userToken}`,
                         "Content-Type": "application/json",
@@ -102,6 +102,9 @@ export default function OrdersScreen() {
                     body: JSON.stringify(payload),
                 }
             );
+
+            await fetchOrders();
+
             setOpen(false);
 
         } catch (err){

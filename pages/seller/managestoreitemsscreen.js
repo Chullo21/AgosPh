@@ -127,7 +127,15 @@ export default function ManageStoreItemsScreen({ route, navigation }) {
 	};
 
 	const handleDeleteMenuItemPress = () => {
-		if (!selectedItem?.id) return;
+		const itemId =
+			typeof selectedItem?.id === "object"
+				? selectedItem.id?.id
+				: selectedItem?.id;
+
+		if (!itemId) {
+			Alert.alert("Error", "Selected item has no ID.");
+			return;
+		}
 
 		Alert.alert(
 			"Delete item",
@@ -140,11 +148,21 @@ export default function ManageStoreItemsScreen({ route, navigation }) {
 					onPress: async () => {
 						try {
 							const res = await fetch(
-								`${API_BASE_URL}/api/Menu/deletemenuitem/${selectedItem.id}`,
-								{ method: "DELETE" }
+								`${API_BASE_URL}/api/Menu/deletemenuitem/${itemId}`,
+								{
+									method: "DELETE",
+									headers: {
+										Authorization: `Bearer ${userToken}`,
+									},
+								}
 							);
-							if (!res.ok) throw new Error(`Failed to delete (${res.status})`);
-							console.log("Menu item deleted successfully");
+
+							const text = await res.text();
+
+							if (!res.ok) {
+								throw new Error(text || `Failed to delete (${res.status})`);
+							}
+
 							setOpen(false);
 							setSelectedItem(null);
 							await fetchStoreItems();
