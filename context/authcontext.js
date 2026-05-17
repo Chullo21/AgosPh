@@ -46,7 +46,10 @@ export default function AuthProvider({ children }) {
                 body: JSON.stringify({ name, email, password, contactNumber, address }),
             });
 
-            if (!response.ok) throw new Error("Registration failed");
+            if (!response.ok) {
+                const errorText = await response.text();
+                throw new Error(`Registration failed: ${response.status} ${errorText}`);
+            }
 
             const user = await response.json();
 

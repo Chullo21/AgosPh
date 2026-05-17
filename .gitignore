@@ -35,3 +35,12 @@ yarn-error.*
 
 # typescript
 *.tsbuildinfo
+
+.vs/
+node_modules/
+.git/
+.expo/
+dist/
+build/
+android/.gradle/
+android/app/build/

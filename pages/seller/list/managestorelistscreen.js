@@ -23,6 +23,7 @@ import { AuthContext } from "../../../context/authcontext";
 import AppBar from "../../../components/control/appbar";
 import PhotoUploader from "../../../components/control/photouploader";
 import BackgroundPhoto from "../../../assets/Beige Blue Modern Abstract Line Shape Bookmark.png";
+import CustomLoading from "../../../components/loading/loading";
 
 const termsAndConditions = `
 1. Acknowledgment of Fees
@@ -53,6 +54,7 @@ By selecting "Accept," you confirm that you have read, understood, and agreed to
 export default function ManageStoreListScreen() {
     const nav = useNavigation();
     const { userToken, user } = useContext(AuthContext);
+    console.log(user, userToken);
     const { API_BASE_URL } = Constants.expoConfig.extra;
 
     const [openModal, setOpenModal] = useState(false);
@@ -63,7 +65,7 @@ export default function ManageStoreListScreen() {
 
     const [storeName, setStoreName] = useState("");
     const [description, setDescription] = useState("");
-    const [maxDistance, setMaxDistance] = useState("5");
+    const [maxDistance, setMaxDistance] = useState("");
     const [longitude, setLongitude] = useState("");
     const [latitude, setLatitude] = useState("");
     const [photoUrl, setPhotoUrl] = useState("");
@@ -72,23 +74,23 @@ export default function ManageStoreListScreen() {
     const handleAddStore = () => setShowTerms(true);
 
     const handleGetLocation = async () => {
+        setIsLoading(true);
         try {
             let { status } = await Location.requestForegroundPermissionsAsync();
             if (status !== 'granted') {
                 alert("Location permission is required.");
+                setIsLoading(false);
                 return;
             }
 
-            // Fix 1: Try getting last known position first to "warm up" the provider
             let lastLocation = await Location.getLastKnownPositionAsync({});
             if (lastLocation) {
                 setLongitude(lastLocation.coords.longitude.toString());
                 setLatitude(lastLocation.coords.latitude.toString());
             }
 
-            // Fix 2: Use lower accuracy for the emulator to avoid "Unavailable" errors
             const location = await Location.getCurrentPositionAsync({
-                accuracy: Location.Accuracy.Balanced, // High/Highest often fails on emulators
+                accuracy: Location.Accuracy.Balanced,
             });
 
             setLongitude(location.coords.longitude.toString());
@@ -97,16 +99,19 @@ export default function ManageStoreListScreen() {
             console.error(error);
             alert("Failed to fetch location.");
         }
+        setIsLoading(false);
     };
 
 
     const uploadPhoto = async (uri) => {
         if (!uri || uri.startsWith("http")) return uri;
+
         const formData = new FormData();
+
         formData.append("file", {
             uri,
             type: "image/jpeg",
-            name: `${storeName}.jpg`
+            name: `${storeName || "store"}.jpg`,
         });
 
         const res = await fetch(
@@ -115,27 +120,33 @@ export default function ManageStoreListScreen() {
                 method: "POST",
                 body: formData,
                 headers: {
-                    "Content-Type": "multipart/form-data",
-                    "Authorization": `Bearer ${userToken}`,
-                    "Roles": `${user.role}`
-                }
+                    Authorization: `Bearer ${userToken}`,
+                    Roles: `${user.role}`,
+                },
             }
         );
 
-        if (!res.ok) throw new Error(`${res.message}`);
-        
-        return await res.text();
+        const text = await res.text();
+
+        if (!res.ok) {
+            console.log("Upload failed:", res.status, text);
+            throw new Error(text || "Photo upload failed.");
+        }
+
+        return text;
     };
 
     const handleSaveStore = async () => {
+        setIsLoading(true);
+
         try {
-            setIsLoading(true);
             if (!storeName.trim()) {
                 alert("Please enter a store name.");
                 return;
             }
 
             let uploadedPhotoUrl = photoUrl;
+
             if (uploadedPhotoUrl && !uploadedPhotoUrl.startsWith("http")) {
                 uploadedPhotoUrl = await uploadPhoto(uploadedPhotoUrl);
             }
@@ -143,35 +154,49 @@ export default function ManageStoreListScreen() {
             const body = {
                 name: storeName,
                 description,
-                maxDistance,
-                longitude,
-                latitude,
+                maxDeliveryDistance: Number(maxDistance),
+                longitude: Number(longitude),
+                latitude: Number(latitude),
                 photoUrl: uploadedPhotoUrl,
-                ownerId: user?.id
+                ownerId: user?.id,
             };
 
-            await fetch(`${API_BASE_URL}/api/Store`, {
+            const url = `${API_BASE_URL}/api/store/create`;
+
+            console.log("Create store URL:", url);
+            console.log("Create store body:", body);
+
+            const res = await fetch(url, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": `Bearer ${userToken}`,
-                    "Role": `${user.role}`
+                    Authorization: `Bearer ${userToken}`,
                 },
-                body: JSON.stringify(body)
+                body: JSON.stringify(body),
             });
+
+            const text = await res.text();
+
+            console.log("Create store status:", res.status);
+            console.log("Create store response:", text);
+
+            if (!res.ok) {
+                throw new Error(text || "Store create failed.");
+            }
 
             setOpenModal(false);
             setStoreName("");
             setDescription("");
+            setMaxDistance("");
             setLongitude("");
             setLatitude("");
-            setPhotoUrl(null);
+            setPhotoUrl("");
             setRefreshKey((prev) => prev + 1);
 
             alert("Store registered successfully!");
         } catch (err) {
             console.error("Error saving store:", err);
-            alert("Error saving store.");
+            alert(err.message || "Error saving store.");
         } finally {
             setIsLoading(false);
         }
@@ -179,11 +204,21 @@ export default function ManageStoreListScreen() {
 
     const handleAcceptTerms = async () => {
         setShowTerms(false);
-        await handleGetLocation();
-        setOpenModal(true);
+        setIsLoading(true);
+
+        try {
+            await handleGetLocation();
+            setOpenModal(true);
+        } catch (err) {
+            console.error(err);
+        } finally {
+            setIsLoading(false);
+        }
     };
 
     const fetchStores = async () => {
+        setIsLoading(true);
+
         try {
             const res = await fetch(
                 `${API_BASE_URL}/api/Store/getmystores?id=${user?.id}`,
@@ -191,15 +226,16 @@ export default function ManageStoreListScreen() {
                     method: "GET",
                     headers: {
                         "Authorization": `Bearer ${userToken}`,
-                        // "Roles": `${user.role}`
                     }
                 }
             );
+
             const data = await res.json();
-            console.log(data);
             setStores(data);
         } catch (err) {
             console.error(err);
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -219,7 +255,9 @@ export default function ManageStoreListScreen() {
                     onBackPress={handleBackPress}
                     actions={[{ icon: "plus", onPress: handleAddStore }]}
                 />
-
+                {isLoading && (
+                    <CustomLoading />
+                ) }
                 <FlatList
                     data={stores}
                     keyExtractor={(item) => item.id.toString()}
@@ -291,6 +329,7 @@ export default function ManageStoreListScreen() {
                         value={storeName}
                         onChangeText={setStoreName}
                         style={styles.input}
+                        type='text'
                     />
                     <TextInput
                         label="Description"
@@ -298,13 +337,15 @@ export default function ManageStoreListScreen() {
                         value={description}
                         onChangeText={setDescription}
                         style={styles.input}
+                        type='text'
                     />
                     <TextInput
                         label="Max Delivery Distance (km)"
                         mode="outlined"
                         value={maxDistance}
+                        onChangeText={setMaxDistance}
+                        keyboardType="numeric"
                         style={styles.input}
-                        editable={false}
                     />
 
                     <View style={styles.locationRow}>

@@ -49,7 +49,7 @@ export default function RegisterScreen() {
             alert("Account created successfully!");
             navigation.goBack();
         } catch (error) {
-            alert(error.message);
+            console.log(error);
         }
     };
 
