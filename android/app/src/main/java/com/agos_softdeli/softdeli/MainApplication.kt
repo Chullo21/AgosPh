@@ -1,4 +1,4 @@
-package com.anonymous.SoftDeli
+package com.agos_softdeli.softdeli
 
 import android.app.Application
 import android.content.res.Configuration

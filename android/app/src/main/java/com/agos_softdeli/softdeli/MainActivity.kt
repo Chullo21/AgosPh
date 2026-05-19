@@ -1,4 +1,4 @@
-package com.anonymous.SoftDeli
+package com.agos_softdeli.softdeli
 
 import android.os.Build
 import android.os.Bundle
